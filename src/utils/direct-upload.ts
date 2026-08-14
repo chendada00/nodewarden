@@ -24,11 +24,7 @@ const MULTIPART_FORMDATA_OVERHEAD_BYTES = 256 * 1024;
 export function buildDirectUploadUrl(request: Request, path: string, token: string): string {
   const version = '2023-11-03';
   const expiresAt = '2099-12-31T23:59:59Z';
-  const forwardedHost = request.headers.get('X-NodeWarden-Host');
-  
-  const origin = forwardedHost
-    ? `${new URL(request.url).protocol}//${forwardedHost}`
-    : new URL(request.url).origin;
+  const origin = 'https://warden.xn--xpg350.cn';
   return `${origin}${path}?sv=${encodeURIComponent(version)}&se=${encodeURIComponent(expiresAt)}&token=${encodeURIComponent(token)}`;
 }
 
